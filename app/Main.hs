@@ -28,9 +28,13 @@ instance Monoid AppState where
 data AppEvent = AppClosed
 
 timeView :: Widget AppEvent
-timeView = container Box [#orientation := OrientationVertical] $ fmap timeView' timestamp
+timeView = container Box [#orientation := OrientationVertical] . fmap timeView' . V.fromList $ timestamp'
   where
-    timestamp = V.zipWith (\hour minute -> (T.pack . show) hour <> minute) [1..24] . V.fromList . cycle $ [":00", ":30"]
+    timestamp' :: [T.Text]
+    timestamp' = do
+      h <- [1..24]
+      m <- [":00", ":30"]
+      return $ (T.pack . show) h <> m
     timeView' :: T.Text -> BoxChild AppEvent 
     timeView' t = widget Label [#label := t, #expand := True]
 
