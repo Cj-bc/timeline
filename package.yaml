@@ -7,7 +7,7 @@ maintainer:          "cj.bc-sd@outlook.jp"
 copyright:           "MIT"
 
 extra-source-files:
-- README.md
+- README.org
 - ChangeLog.md
 
 # Metadata used when publishing your package
