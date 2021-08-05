@@ -36,7 +36,7 @@ timeView = container Box [#orientation := OrientationVertical] . fmap timeView' 
       m <- [":00", ":30"]
       return $ (T.pack . show) h <> m
     timeView' :: T.Text -> BoxChild AppEvent 
-    timeView' t = widget Label [#label := t, #expand := True]
+    timeView' t = widget Label [#label := t, #vexpand := True, #hexpand := False]
 
 scheduleView :: AppState -> Widget AppEvent
 scheduleView s = container Box [#orientation := OrientationVertical]
