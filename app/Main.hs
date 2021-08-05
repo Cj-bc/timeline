@@ -3,14 +3,17 @@
 {-# LANGUAGE OverloadedLists #-}
 module Main where
 
-import Lib
 import GI.Gtk (Box(..)
               , Window(..)
               , Orientation(..)
               , Label(..)
+              , Grid(..)
+              , Button(..)
+              , PositionType(..)
               )
 import GI.Gtk.Declarative
 import GI.Gtk.Declarative.App.Simple
+import qualified GI.Gtk.Declarative.Container.Grid as G
 import Control.Monad (void)
 import Text.ICalendar.Types
 import qualified Data.Vector as V
@@ -38,20 +41,26 @@ timeView = container Box [#orientation := OrientationVertical] . fmap timeView' 
     timeView' :: T.Text -> BoxChild AppEvent 
     timeView' t = widget Label [#label := t, #vexpand := True, #hexpand := False]
 
+-- | I better to move this to other module at least
+calendarTimelineView :: VCalendar -> Widget AppEvent
+calendarTimelineView c = container Grid [classes ["cal_1"]] $ V.map construct (V.fromList $ replicate 24 1)
+  where
+    construct height = G.GridChild { G.properties = G.GridChildPropertiesNextTo height 1 PositionTypeBottom
+                                   , G.child = widget Button [#label := "Helllo" , #vexpand := True]
+                                   }
+
+  
 scheduleView :: AppState -> Widget AppEvent
-scheduleView s = container Box [#orientation := OrientationVertical]
-                 [ ]
+scheduleView = calendarTimelineView . scheduleCal
 
 logbookView :: AppState -> Widget AppEvent
-logbookView s = container Box [#orientation := OrientationVertical]
-                 [ ]
+logbookView = calendarTimelineView . logbookCal
 
 view' :: AppState ->  AppView Window AppEvent 
 view' s = bin Window [#name := "timeline"
                      , on #deleteEvent (const (True, AppClosed)) ]
-          $ container Box [#orientation := OrientationHorizontal]
-          [ BoxChild defaultBoxChildProperties timeView]
-          -- $ [ timeView, scheduleView s, logbookView s]
+          . container Box [#orientation := OrientationHorizontal]
+          $ fmap (BoxChild defaultBoxChildProperties) [ timeView, scheduleView s, logbookView s]
 
 update' :: AppState -> AppEvent -> Transition AppState AppEvent
 update' _ AppClosed = Exit
