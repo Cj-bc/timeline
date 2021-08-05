@@ -41,7 +41,10 @@ packages:
 #   commit: e7b331f14bcffb8367cd58fbfc8b40ec7642100a
 #
 extra-deps:
-  - gi-gtk-declarative-0.7.0@sha256:7e6318ad162a97dc19af79499eb7bbb72022aa4ac3368e8a20fa199a7e8db2c6,4417
+  - git: https://github.com/Cj-bc/gi-gtk-declarative.git
+    commit: 242c3638fe147682b180d74128de87a9af753687
+    subdirs:
+    - gi-gtk-declarative
   - iCalendar-0.4.0.5@sha256:2a3dca74955de4d3548e4592201093b59328ca153ad207bad189e73cc04f4be0,1962
   - mime-0.4.0.2@sha256:208947d9d1a19d08850be67ecb28c6e776db697f3bba05bd9d682e51a59f241f,983
   - gi-gtk-declarative-app-simple-0.7.0@sha256:bc14f7cee5b933ce448f7ff5af13bd2cf63c657426003a8b41457556997ac39f,2276

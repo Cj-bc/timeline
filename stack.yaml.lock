@@ -12,12 +12,18 @@ snapshots:
     size: 585817
 packages:
 - original:
-    hackage: gi-gtk-declarative-0.7.0@sha256:7e6318ad162a97dc19af79499eb7bbb72022aa4ac3368e8a20fa199a7e8db2c6,4417
+    subdir: gi-gtk-declarative
+    git: https://github.com/Cj-bc/gi-gtk-declarative.git
+    commit: 242c3638fe147682b180d74128de87a9af753687
   completed:
     pantry-tree:
-      sha256: eba1ca9b183eabe6f6b3ab2be9250428c97d2982d303f7abc0a431e5eaada73f
-      size: 2393
-    hackage: gi-gtk-declarative-0.7.0@sha256:7e6318ad162a97dc19af79499eb7bbb72022aa4ac3368e8a20fa199a7e8db2c6,4417
+      sha256: 61c95289450976a3a603f53ce3c09757b62bcc34bfeb3499c69e98fab66a7943
+      size: 2574
+    subdir: gi-gtk-declarative
+    version: 0.7.0
+    git: https://github.com/Cj-bc/gi-gtk-declarative.git
+    name: gi-gtk-declarative
+    commit: 242c3638fe147682b180d74128de87a9af753687
 - original:
     hackage: iCalendar-0.4.0.5@sha256:2a3dca74955de4d3548e4592201093b59328ca153ad207bad189e73cc04f4be0,1962
   completed:
